@@ -35,6 +35,16 @@ I assume we use the light of wavelength at $532nm$, so we can get the minimum sa
 
 **1. Ideal case with $0.2 \mu m$ pixel size**
 
+$$
+\begin{array}{c|c}
+\textbf{RMS} & \textbf{SSIM} \\
+\hline
+2.5 \times 10^{-16} & 0.9999
+\end{array}
+$$
+
+
+
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_1 rec.png" width="800">
@@ -51,3 +61,12 @@ I assume we use the light of wavelength at $532nm$, so we can get the minimum sa
 
 **2. Under-sampling with $1.6 \mu m$ pixel size**
 
+$$
+\begin{array}{c|c}
+\textbf{RMS} & \textbf{SSIM} \\
+\hline
+2.78 \times 10^{-16} & 0.9999
+\end{array}
+$$
+
+🚩
