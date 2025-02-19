@@ -14,7 +14,7 @@
 
 ## Sample 
 
-It is a random generated sample with $1024 \times 1024$ resolution. I added some white Guassian noise to simulate the random noise while imaging.
+It is a random generated sample with $1024 \times 1024$ resolution. I added some white Guassian noise to simulate the random noise while imaging. Due to in lensless microscope the FOV is equal to the active area on the sensor chip which is nearly equal to the size of the sample. So the **FOV** here is $204.8\mu m \times 204.8\mu m$ .
 
 <div align="center">
     <figure>
@@ -29,7 +29,11 @@ If we want to recover the signal without any loss we must obey the Shannon sampl
 
 $$K_{max}=\frac{2\pi}{\lambda_{min}}\rightarrow f_{max}=\frac{k_{max}}{2\pi}=\frac{1}{\lambda}\rightarrow \Delta x \leq \frac{\lambda_{min}}{2}$$
 
-I assume we use the light of wavelength at $532nm$, so we can get the minimum sampling distance $\Delta x = 0.266 \mu m$
+I assume we use the light of wavelength at $532nm$, so we can get **the minimum sampling distance** $\Delta x = 0.266 \mu m$
+
+## Simulation method
+
+
 
 ## Test 1 with 5mm sample-sensor distance
 
