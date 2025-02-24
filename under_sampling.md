@@ -1,4 +1,4 @@
-<!-- <head>
+<head>
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -8,19 +8,6 @@
       }
     });
   </script>
-</head> -->
-
-<head>
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],  // 识别 `$...$` 作为行内公式
-        displayMath: [['$$', '$$']] // 识别 `$$...$$` 作为块级公式
-      },
-      svg: { fontCache: 'global' }  // 采用 SVG 渲染，字体更清晰
-    };
-  </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 
 
