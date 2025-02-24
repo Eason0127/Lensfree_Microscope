@@ -103,7 +103,6 @@
 
 <!-- 侧边栏 -->
 <div id="sidebar">
-  <h2>目录</h2>
   <ul id="toc"></ul>
 </div>
 
@@ -168,6 +167,9 @@ $$
 \end{array}
 $$
 
+> $$\text{RMS}=\sqrt{\frac{1}{n}\sum _{i=1}^n(\text{Reconstructed amp}_{i}-\text{Recorded amp}_i)^2}$$
+>, $i$ is the pixel index.
+
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_11.png" width="500">
@@ -209,7 +211,7 @@ $$
 
 
 
-🚩**3. Under-sampling with $1.6 \mu m$ pixel size**
+🚩**3. Under-sampling with $1.6 \mu m$ pixel size** (If we use IMX477 then this is the circumstance)
 
 $$
 \begin{array}{c|c}
@@ -259,6 +261,10 @@ $$
 
 ## Conclusion
 
+I think the RMS error can't really reflect the reconstruction quality because the RMS errors of them are nearly the same but the ringing effect can be seen around the elements when we have under sampling and it becomes more and more serious as the undersampling becomes more severe. I'm looking for a parameter that can reasonably reflect the quality of the reconstruction.
+
+
+
 <div style="display: flex; justify-content: center; align-items: center;">
     <figure style="margin: 10px; text-align: center;">
         <img src="./under_sampling_pic/Figure_11.png" width="600">
@@ -277,3 +283,7 @@ $$
         <figcaption>2.4 micrometer</figcaption>
     </figure>
 </div>
+
+**What to do next:**
+
+1. Find a good parameter to evaluate the reconstruction quality.
