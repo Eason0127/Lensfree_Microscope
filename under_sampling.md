@@ -5,18 +5,20 @@
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$']],
-        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true  // 允许 `$...$` 解析
       },
       svg: {
         scale: 1.2
       }
     };
-    
+
     document.addEventListener("DOMContentLoaded", function() {
       MathJax.typesetPromise();
     });
   </script>
 </head>
+
 
 
 
