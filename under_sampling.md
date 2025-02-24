@@ -5,33 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lensfree Microscope</title>
 
-  <!-- MathJax 解析数学公式 -->
+  <!-- MathJax for rendering math equations -->
   <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$']],
         displayMath: [['\\[', '\\]'], ['$$', '$$']],
-        processEscapes: true  // 允许 `$...$` 解析
+        processEscapes: true
       },
       svg: {
         scale: 1.2
       }
     };
+    document.addEventListener("DOMContentLoaded", function() {
+      MathJax.typesetPromise();
+    });
 
+    // 生成目录
     document.addEventListener("DOMContentLoaded", function () {
-      // 确保 MathJax 解析数学公式
-      if (window.MathJax) {
-        setTimeout(() => {
-          MathJax.typesetPromise();
-        }, 100);
-      }
-
-      // 目录生成逻辑
       let toc = document.getElementById("toc");
-      toc.innerHTML = ""; // **清空目录，防止重复生成**
+      toc.innerHTML = "";  // **清空已有目录，防止重复添加**
 
       let headers = document.querySelectorAll("h2, h3"); // 只获取 h2 和 h3
       headers.forEach(header => {
@@ -55,11 +50,11 @@
       position: fixed;
       left: 0;
       top: 0;
-      width: 200px;
+      width: 220px;
       height: 100vh;
       background-color: #f9f9f9;
       padding: 15px;
-      overflow-y: auto;
+      overflow-y: auto;  /* 添加滚动条 */
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     }
     #sidebar h2 {
@@ -71,7 +66,7 @@
       padding: 0;
     }
     #sidebar ul li {
-      margin: 10px 0;
+      margin: 8px 0;
     }
     #sidebar ul li a {
       text-decoration: none;
@@ -82,9 +77,30 @@
       text-decoration: underline;
     }
     #content {
-      margin-left: 220px;
+      margin-left: 240px;
       padding: 20px;
-      width: calc(100% - 220px);
+      width: calc(100% - 240px);
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+    .image-container figure {
+      margin: 0;
+      text-align: center;
+    }
+    .image-container img {
+      max-width: 300px;
+      height: auto;
+    }
+    .arrow {
+      font-size: 40px;
     }
   </style>
 </head>
@@ -102,7 +118,7 @@
   <h1 id="under-sampling-simulation">Under-sampling simulation</h1>
 
   <h2 id="sample">Sample</h2>
-  <p>It is a random generated sample with $1024 \times 1024$ resolution...</p>
+  <p>It is a randomly generated sample with $1024 \times 1024$ resolution...</p>
 
   <h2 id="shannon-sampling-criteria">Shannon sampling criteria</h2>
   <p>If we want to recover the signal without any loss...</p>
@@ -110,13 +126,15 @@
   <h2 id="simulation-method">Simulation method</h2>
   <p>I wanted to test the IPR reconstruction...</p>
 
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <figure style="margin: 10px; text-align: center;">
-        <img src="./under_sampling_pic/说明图1.png" width="600">
+  <div class="image-container">
+    <figure>
+        <img src="./under_sampling_pic/说明图1.png" alt="Original Sample">
+        <figcaption>Original Sample</figcaption>
     </figure>
-    <span style="font-size: 40px; margin: 10px;">&harr;</span>
-    <figure style="margin: 10px; text-align: center;">
-        <img src="./under_sampling_pic/说明图2.png" width="600">
+    <span class="arrow">&harr;</span>
+    <figure>
+        <img src="./under_sampling_pic/说明图2.png" alt="Under-sampled Image">
+        <figcaption>Under-sampled Image</figcaption>
     </figure>
   </div>
 
