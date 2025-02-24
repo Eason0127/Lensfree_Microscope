@@ -1,14 +1,14 @@
-<head>
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      inlineMath: [['$','$']]
-      }
-    });
-  </script>
-</head>
+      inlineMath: [['$', '$']]
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] },  // 强制使用 TeX 字体
+    SVG: { font: "TeX" }  // 确保 SVG 方式也使用 TeX 字体
+  });
+</script>
+
 
 # Under-sampling simulation
 
