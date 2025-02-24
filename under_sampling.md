@@ -167,14 +167,7 @@
 
 <!-- 折叠/展开按钮 -->
 <button id="toggle-btn" onclick="toggleSidebar()">☰</button>
-
-  <h2 id="test">Test</h2>
-  <p>**1. Ideal case with $0.2 \mu m$ pixel size**</p>
-
-  <h2 id="conclusion">Conclusion</h2>
-  <p>Here we summarize the results...</p>
 </div>
-
 </body>
 </html>
 
