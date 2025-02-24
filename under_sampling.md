@@ -1,13 +1,11 @@
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      inlineMath: [['$', '$']]
-    },
-    "HTML-CSS": { availableFonts: ["TeX"] },  // 强制使用 TeX 字体
-    SVG: { font: "TeX" }  // 确保 SVG 方式也使用 TeX 字体
-  });
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
+    svg: { fontCache: 'global' }
+  };
 </script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
 
 
 # Under-sampling simulation
@@ -141,19 +139,19 @@ $$
 
 <div style="display: flex; justify-content: center; align-items: center;">
     <figure style="margin: 10px; text-align: center;">
-        <img src="./under_sampling_pic/Figure_11.png" width="400">
+        <img src="./under_sampling_pic/Figure_11.png" width="600">
         <figcaption>Ideal case</figcaption>
     </figure>
     <figure style="margin: 10px; text-align: center;">
-        <img src="./under_sampling_pic/Figure_22.png" width="400">
+        <img src="./under_sampling_pic/Figure_22.png" width="600">
         <figcaption>0.8 micrometer</figcaption>
     </figure>
         <figure style="margin: 10px; text-align: center;">
-        <img src="./under_sampling_pic/Figure_33.png" width="400">
+        <img src="./under_sampling_pic/Figure_33.png" width="600">
         <figcaption>1.6 micrometer</figcaption>
     </figure>
         <figure style="margin: 10px; text-align: center;">
-        <img src="./under_sampling_pic/Figure_44.png" width="400">
+        <img src="./under_sampling_pic/Figure_44.png" width="600">
         <figcaption>2.4 micrometer</figcaption>
     </figure>
 </div>
