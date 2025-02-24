@@ -1,20 +1,21 @@
 <head>
+  <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$']],  // 识别 `$...$` 作为行内公式
-        displayMath: [['$$', '$$']] // 识别 `$$...$$` 作为块级公式
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // 跳过某些 HTML 标签
+        inlineMath: [['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
       },
       svg: {
-        fontCache: 'global', // 使用全局字体缓存，减少加载时间
-        scale: 1.2 // 让公式字体放大 1.2 倍，使其更清晰
+        scale: 1.2
       }
     };
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      MathJax.typesetPromise();
+    });
   </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 
 
