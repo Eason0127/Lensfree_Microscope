@@ -33,7 +33,9 @@ I assume we use the light of wavelength at $532nm$, so we can get **the minimum 
 
 ## Simulation method
 
+I want to achieve the following effect:
 
+1. 
 
 ## Test 1 with 5mm sample-sensor distance
 
@@ -43,34 +45,95 @@ $$
 \begin{array}{c|c}
 \textbf{RMS} & \textbf{SSIM} \\
 \hline
-2.5 \times 10^{-16} & 0.9999
+2.47 \times 10^{-16} & 0.9999
 \end{array}
 $$
 
+<div align="center">
+    <figure>
+        <img src="./under_sampling_pic/Figure_11.png" width="500">
+        <figcaption>Figure 2: Sample reconstructed</figcaption>
+    </figure>
+</div>
 
 
 <div align="center">
     <figure>
-        <img src="./under_sampling_pic/Figure_1 rec.png" width="800">
+        <img src="./under_sampling_pic/Figure_1.png" width="400">
+        <figcaption>Figure 3: Convergence figure</figcaption>
+    </figure>
+</div>
+
+**2. Under-sampling with $0.8 \mu m$ pixel size**
+
+$$
+\begin{array}{c|c}
+\textbf{RMS} & \textbf{SSIM} \\
+\hline
+2.63 \times 10^{-16} & 0.9999
+\end{array}
+$$
+
+<div align="center">
+    <figure>
+        <img src="./under_sampling_pic/Figure_22.png" width="500">
         <figcaption>Figure 2: Sample reconstructed</figcaption>
     </figure>
 </div>
 
 <div align="center">
     <figure>
-        <img src="./under_sampling_pic/Figure_1.png" width="500">
+        <img src="./under_sampling_pic/Figure_2.png" width="400">
         <figcaption>Figure 3: Convergence figure</figcaption>
     </figure>
 </div>
 
-**2. Under-sampling with $1.6 \mu m$ pixel size**
+
+
+🚩**3. Under-sampling with $1.6 \mu m$ pixel size**
 
 $$
 \begin{array}{c|c}
 \textbf{RMS} & \textbf{SSIM} \\
 \hline
-2.78 \times 10^{-16} & 0.9999
+2.54 \times 10^{-16} & 0.9999
 \end{array}
 $$
 
-🚩
+<div align="center">
+    <figure>
+        <img src="./under_sampling_pic/Figure_33.png" width="500">
+        <figcaption>Figure 2: Sample reconstructed</figcaption>
+    </figure>
+</div>
+
+<div align="center">
+    <figure>
+        <img src="./under_sampling_pic/Figure_3.png" width="400">
+        <figcaption>Figure 3: Convergence figure</figcaption>
+    </figure>
+</div>
+
+**4. Under-sampling with $2.4 \mu m$ pixel size**
+
+$$
+\begin{array}{c|c}
+\textbf{RMS} & \textbf{SSIM} \\
+\hline
+2.66 \times 10^{-16} & 0.9999
+\end{array}
+$$
+
+<div align="center">
+    <figure>
+        <img src="./under_sampling_pic/Figure_44.png" width="500">
+        <figcaption>Figure 2: Sample reconstructed</figcaption>
+    </figure>
+</div>
+
+<div align="center">
+    <figure>
+        <img src="./under_sampling_pic/Figure_4.png" width="400">
+        <figcaption>Figure 3: Convergence figure</figcaption>
+    </figure>
+</div>
