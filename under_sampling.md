@@ -1,21 +1,22 @@
-<script type="text/x-mathjax-config;executed=true">
-        window.MathJax.Hub.Config({
-            showProcessingMessages: false, //关闭js加载过程信息
-            messageStyle: "none", //不显示信息
-            jax: ["input/TeX", "output/HTML-CSS"],
-            tex2jax: {
-                inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
-                displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
-                skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
-            },
-            "HTML-CSS": {
-                availableFonts: ["STIX", "TeX"], //可选字体
-                showMathMenu: false //关闭右击菜单显示
-            }
-        });
-        //下面第三个参数可以不写，默认对整个html内的latex进行翻译
-        window.MathJax.Hub.Queue(["Typeset", MathJax.Hub,document.getElementsByClassName("ck-content")]);
-</script>
+<head>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],  // 识别 `$...$` 作为行内公式
+        displayMath: [['$$', '$$']] // 识别 `$$...$$` 作为块级公式
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // 跳过某些 HTML 标签
+      },
+      svg: {
+        fontCache: 'global', // 使用全局字体缓存，减少加载时间
+        scale: 1.2 // 让公式字体放大 1.2 倍，使其更清晰
+      }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
 
 
 # Under-sampling simulation
