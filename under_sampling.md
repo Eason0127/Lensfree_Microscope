@@ -13,38 +13,31 @@
       }
     };
 
-    document.addEventListener("DOMContentLoaded", function() {
-      MathJax.typesetPromise();
-    });
-  </script>
-</head>
 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Under-sampling simulation</title>
   <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$']],
         displayMath: [['\\[', '\\]'], ['$$', '$$']],
-        processEscapes: true  // 允许 `$...$` 解析
+        processEscapes: true  
       },
-      svg: {
-        scale: 1.2
-      }
+      svg: { scale: 1.2 }
     };
 
     document.addEventListener("DOMContentLoaded", function() {
       MathJax.typesetPromise();
-    });
-
-    // 自动生成目录
-    document.addEventListener("DOMContentLoaded", function () {
+      
+      // 自动生成目录
       let toc = document.getElementById("toc");
-      let headers = document.querySelectorAll("h2, h3"); // 只获取 h2 和 h3
+      let headers = document.querySelectorAll("h2, h3"); 
 
       headers.forEach(header => {
         let id = header.id || header.textContent.trim().replace(/\s+/g, "-").toLowerCase();
@@ -55,13 +48,33 @@
         toc.appendChild(li);
       });
     });
+
+    // 侧边栏折叠功能
+    function toggleSidebar() {
+      let sidebar = document.getElementById("sidebar");
+      let content = document.getElementById("content");
+      let toggleBtn = document.getElementById("toggle-btn");
+
+      if (sidebar.classList.contains("collapsed")) {
+        sidebar.classList.remove("collapsed");
+        content.classList.remove("expanded");
+        toggleBtn.innerHTML = "☰"; // 恢复按钮图标
+      } else {
+        sidebar.classList.add("collapsed");
+        content.classList.add("expanded");
+        toggleBtn.innerHTML = "→"; // 更改按钮图标
+      }
+    }
   </script>
+
   <style>
     body {
       display: flex;
       margin: 0;
       font-family: Arial, sans-serif;
     }
+
+    /* 侧边栏样式 */
     #sidebar {
       position: fixed;
       left: 0;
@@ -72,30 +85,75 @@
       padding: 15px;
       overflow-y: auto;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+      transition: width 0.3s ease;
     }
+
     #sidebar h2 {
       font-size: 18px;
       margin-bottom: 10px;
     }
+
     #sidebar ul {
       list-style: none;
       padding: 0;
     }
+
     #sidebar ul li {
       margin: 10px 0;
     }
+
     #sidebar ul li a {
       text-decoration: none;
       color: #007bff;
       font-weight: bold;
     }
+
     #sidebar ul li a:hover {
       text-decoration: underline;
     }
+
+    /* 侧边栏折叠状态 */
+    #sidebar.collapsed {
+      width: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* 内容区域样式 */
     #content {
       margin-left: 220px;
       padding: 20px;
       width: calc(100% - 220px);
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+
+    /* 内容区域扩展样式（当侧边栏折叠时） */
+    #content.expanded {
+      margin-left: 20px;
+      width: calc(100% - 20px);
+    }
+
+    /* 折叠/展开按钮 */
+    #toggle-btn {
+      position: fixed;
+      left: 200px;
+      top: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: left 0.3s ease;
+    }
+
+    /* 按钮位置变化 */
+    #sidebar.collapsed + #toggle-btn {
+      left: 10px;
+    }
+
+    #toggle-btn:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
@@ -103,11 +161,23 @@
 
 <!-- 侧边栏 -->
 <div id="sidebar">
+  <h2>目录</h2>
   <ul id="toc"></ul>
+</div>
+
+<!-- 折叠/展开按钮 -->
+<button id="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+  <h2 id="test">Test</h2>
+  <p>**1. Ideal case with $0.2 \mu m$ pixel size**</p>
+
+  <h2 id="conclusion">Conclusion</h2>
+  <p>Here we summarize the results...</p>
 </div>
 
 </body>
 </html>
+
 
 
 
