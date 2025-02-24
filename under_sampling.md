@@ -72,7 +72,7 @@ I wanted to test the IPR reconstruction with the same sample under different pix
 
 ## Test 
 
-1. Ideal case with $0.2 \mu m$ pixel size
+**1. Ideal case with $0.2 \mu m$ pixel size**
 
 $$
 \begin{array}{c|c}
@@ -97,7 +97,7 @@ $$
     </figure>
 </div>
 
-2. Under-sampling with $0.8 \mu m$ pixel size
+**2. Under-sampling with $0.8 \mu m$ pixel size**
 
 $$
 \begin{array}{c|c}
@@ -123,7 +123,7 @@ $$
 
 
 
-🚩3. Under-sampling with $1.6 \mu m$ pixel size
+🚩**3. Under-sampling with $1.6 \mu m$ pixel size**
 
 $$
 \begin{array}{c|c}
@@ -147,7 +147,7 @@ $$
     </figure>
 </div>
 
-4. Under-sampling with $2.4 \mu m$ pixel size
+**4. Under-sampling with $2.4 \mu m$ pixel size**
 
 $$
 \begin{array}{c|c}
