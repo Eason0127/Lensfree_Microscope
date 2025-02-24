@@ -19,12 +19,129 @@
   </script>
 </head>
 
-- [Under-sampling simulation](#under-sampling-simulation)
-  - [Sample](#sample)
-  - [Shannon sampling criteria](#shannon-sampling-criteria)
-  - [Simulation method](#simulation-method)
-  - [Test](#test)
-  - [Conclusion](#conclusion)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true  // 允许 `$...$` 解析
+      },
+      svg: {
+        scale: 1.2
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+      MathJax.typesetPromise();
+    });
+
+    // 自动生成目录
+    document.addEventListener("DOMContentLoaded", function () {
+      let toc = document.getElementById("toc");
+      let headers = document.querySelectorAll("h2, h3"); // 只获取 h2 和 h3
+
+      headers.forEach(header => {
+        let id = header.id || header.textContent.trim().replace(/\s+/g, "-").toLowerCase();
+        header.id = id;
+
+        let li = document.createElement("li");
+        li.innerHTML = `<a href="#${id}">${header.textContent}</a>`;
+        toc.appendChild(li);
+      });
+    });
+  </script>
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    #sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 100vh;
+      background-color: #f9f9f9;
+      padding: 15px;
+      overflow-y: auto;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+    #sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    #sidebar ul li {
+      margin: 10px 0;
+    }
+    #sidebar ul li a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+    #sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+    #content {
+      margin-left: 220px;
+      padding: 20px;
+      width: calc(100% - 220px);
+    }
+  </style>
+</head>
+<body>
+
+<!-- 侧边栏 -->
+<div id="sidebar">
+  <h2>目录</h2>
+  <ul id="toc"></ul>
+</div>
+
+<!-- 主要内容 -->
+<div id="content">
+  <h1 id="under-sampling-simulation">Under-sampling simulation</h1>
+
+  <h2 id="sample">Sample</h2>
+  <p>It is a random generated sample with $1024 \times 1024$ resolution...</p>
+
+  <h2 id="shannon-sampling-criteria">Shannon sampling criteria</h2>
+  <p>If we want to recover the signal without any loss...</p>
+
+  <h2 id="simulation-method">Simulation method</h2>
+  <p>I wanted to test the IPR reconstruction...</p>
+
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <figure style="margin: 10px; text-align: center;">
+        <img src="./under_sampling_pic/说明图1.png" width="600">
+    </figure>
+    <span style="font-size: 40px; margin: 10px;">&harr;</span>
+    <figure style="margin: 10px; text-align: center;">
+        <img src="./under_sampling_pic/说明图2.png" width="600">
+    </figure>
+  </div>
+
+  <h2 id="test">Test</h2>
+  <p>**1. Ideal case with $0.2 \mu m$ pixel size**</p>
+
+  <h2 id="conclusion">Conclusion</h2>
+  <p>Here we summarize the results...</p>
+</div>
+
+</body>
+</html>
+
+
 
 
 # Under-sampling simulation
