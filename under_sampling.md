@@ -287,3 +287,4 @@ I think the RMS error can't really reflect the reconstruction quality because th
 **What to do next:**
 
 1. Find a good parameter to evaluate the reconstruction quality.
+2. Test the quality after adding some random noise.
