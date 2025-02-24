@@ -19,7 +19,6 @@ It is a random generated sample with $1024 \times 1024$ resolution. I added some
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/microscopic_sample_no_grid.png" width="400">
-        <figcaption>Figure 1: Sample</figcaption>
     </figure>
 </div>
 
@@ -52,7 +51,7 @@ $$
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_11.png" width="500">
-        <figcaption>Figure 2: Sample reconstructed</figcaption>
+        <figcaption>Figure 1.1: Sample reconstructed</figcaption>
     </figure>
 </div>
 
@@ -60,7 +59,7 @@ $$
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_1.png" width="400">
-        <figcaption>Figure 3: Convergence figure</figcaption>
+        <figcaption>Figure 1.2: Convergence figure</figcaption>
     </figure>
 </div>
 
@@ -77,14 +76,14 @@ $$
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_22.png" width="500">
-        <figcaption>Figure 2: Sample reconstructed</figcaption>
+        <figcaption>Figure 2.1: Sample reconstructed</figcaption>
     </figure>
 </div>
 
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_2.png" width="400">
-        <figcaption>Figure 3: Convergence figure</figcaption>
+        <figcaption>Figure 2.2: Convergence figure</figcaption>
     </figure>
 </div>
 
@@ -103,14 +102,14 @@ $$
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_33.png" width="500">
-        <figcaption>Figure 2: Sample reconstructed</figcaption>
+        <figcaption>Figure 3.1: Sample reconstructed</figcaption>
     </figure>
 </div>
 
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_3.png" width="400">
-        <figcaption>Figure 3: Convergence figure</figcaption>
+        <figcaption>Figure 3.2: Convergence figure</figcaption>
     </figure>
 </div>
 
@@ -127,13 +126,34 @@ $$
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_44.png" width="500">
-        <figcaption>Figure 2: Sample reconstructed</figcaption>
+        <figcaption>Figure 4.1: Sample reconstructed</figcaption>
     </figure>
 </div>
 
 <div align="center">
     <figure>
         <img src="./under_sampling_pic/Figure_4.png" width="400">
-        <figcaption>Figure 3: Convergence figure</figcaption>
+        <figcaption>Figure 4.2: Convergence figure</figcaption>
+    </figure>
+</div>
+
+## Conclusion
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    <figure style="margin: 10px; text-align: center;">
+        <img src="./under_sampling_pic/Figure_11.png" width="400">
+        <figcaption>Ideal case</figcaption>
+    </figure>
+    <figure style="margin: 10px; text-align: center;">
+        <img src="./under_sampling_pic/Figure_22.png" width="400">
+        <figcaption>0.8 micrometer</figcaption>
+    </figure>
+        <figure style="margin: 10px; text-align: center;">
+        <img src="./under_sampling_pic/Figure_33.png" width="400">
+        <figcaption>1.6 micrometer</figcaption>
+    </figure>
+        <figure style="margin: 10px; text-align: center;">
+        <img src="./under_sampling_pic/Figure_44.png" width="400">
+        <figcaption>2.4 micrometer</figcaption>
     </figure>
 </div>
