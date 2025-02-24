@@ -1,14 +1,14 @@
-<script>
-  window.MathJax = {
-    tex: { 
-      inlineMath: [['$', '$']], 
-      displayMath: [['$$', '$$']] 
-    },
-    svg: { fontCache: 'global' }  // 使用 SVG 方式渲染，字体更清晰
-  };
-</script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
+<!-- <head>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+      }
+    });
+  </script>
+</head> -->
 
 
 
