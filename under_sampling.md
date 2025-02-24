@@ -19,10 +19,16 @@
   </script>
 </head>
 
-
+- [Under-sampling simulation](#under-sampling-simulation)
+  - [Sample](#sample)
+  - [Shannon sampling criteria](#shannon-sampling-criteria)
+  - [Simulation method](#simulation-method)
+  - [Test](#test)
+  - [Conclusion](#conclusion)
 
 
 # Under-sampling simulation
+
 
 ## Sample 
 
@@ -44,11 +50,27 @@ I assume we use the light of wavelength at $532nm$, so we can get **the minimum 
 
 ## Simulation method
 
-I want to achieve the following effect:
+I wanted to test the IPR reconstruction with the same sample under different pixel sizes but there would be a **difficulty** for code simulation.
 
-1. 
+    def angular_spectrum_method(field, pixelSize, distance, W, H, numPixels):
+        GT = fftshift(fft2(ifftshift(field)))    ## The matrix size is 1024*1024
+        transfer = Transfer_function(W, H, distance, 532e-9, pixelSize, numPixels)  ## The matrix size is 52*52
+        transfer = resize_transfer_function(transfer, field.shape)
+        gt_prime = fftshift(ifft2(ifftshift(GT * transfer)))  ## The matrix size is different so will cause error
+        return gt_prime
 
-## Test 1 with 5mm sample-sensor distance
+<div style="display: flex; justify-content: center; align-items: center;">
+    <figure style="margin: 10px; text-align: center;">
+        <img src="./under_sampling_pic/说明图1.png" width="600">
+    </figure>
+    <span style="font-size: 40px; margin: 10px;">&harr;</span>
+    <figure style="margin: 10px; text-align: center;">
+        <img src="./under_sampling_pic/说明图2.png" width="600">
+    </figure>
+</div>
+
+
+## Test 
 
 **1. Ideal case with $0.2 \mu m$ pixel size**
 
