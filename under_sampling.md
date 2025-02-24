@@ -22,7 +22,7 @@
   <title>Under-sampling simulation</title>
   <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  
+
   <style>
     body {
       display: flex;
@@ -89,6 +89,12 @@
       width: calc(100% - 20px);
     }
 
+    /* 隐藏正文内容，只保留标题 */
+    #content p,
+    #content div:not(h1, h2, h3) {
+      display: none;
+    }
+
     /* 折叠/展开按钮 */
     #toggle-btn {
       position: fixed;
@@ -124,6 +130,21 @@
 <!-- 折叠/展开按钮 -->
 <button id="toggle-btn" onclick="toggleSidebar()">☰</button>
 
+<!-- 主要内容，只显示标题 -->
+<div id="content">
+  <h1>Under-sampling simulation</h1>
+
+  <h2>Sample</h2>
+
+  <h2>Shannon sampling criteria</h2>
+
+  <h2>Simulation method</h2>
+
+  <h2>Test</h2>
+
+  <h2>Conclusion</h2>
+</div>
+
 <script>
   window.MathJax = {
     tex: {
@@ -139,7 +160,7 @@
     
     // 自动生成目录
     let toc = document.getElementById("toc");
-    let headers = document.querySelectorAll("#content h2, #content h3"); 
+    let headers = document.querySelectorAll("#content h1, #content h2, #content h3"); 
 
     headers.forEach(header => {
       let id = header.id || header.textContent.trim().replace(/\s+/g, "-").toLowerCase();
@@ -171,6 +192,7 @@
 
 </body>
 </html>
+
 
 
 
