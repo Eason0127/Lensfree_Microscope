@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lensfree Microscope</title>
-
-  <!-- MathJax for rendering math equations -->
   <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
@@ -13,22 +6,47 @@
       tex: {
         inlineMath: [['$', '$']],
         displayMath: [['\\[', '\\]'], ['$$', '$$']],
-        processEscapes: true
+        processEscapes: true  // 允许 `$...$` 解析
       },
       svg: {
         scale: 1.2
       }
     };
+
+    document.addEventListener("DOMContentLoaded", function() {
+      MathJax.typesetPromise();
+    });
+  </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true  // 允许 `$...$` 解析
+      },
+      svg: {
+        scale: 1.2
+      }
+    };
+
     document.addEventListener("DOMContentLoaded", function() {
       MathJax.typesetPromise();
     });
 
-    // 生成目录
+    // 自动生成目录
     document.addEventListener("DOMContentLoaded", function () {
       let toc = document.getElementById("toc");
-      toc.innerHTML = "";  // **清空已有目录，防止重复添加**
-
       let headers = document.querySelectorAll("h2, h3"); // 只获取 h2 和 h3
+
       headers.forEach(header => {
         let id = header.id || header.textContent.trim().replace(/\s+/g, "-").toLowerCase();
         header.id = id;
@@ -39,7 +57,6 @@
       });
     });
   </script>
-
   <style>
     body {
       display: flex;
@@ -50,11 +67,11 @@
       position: fixed;
       left: 0;
       top: 0;
-      width: 220px;
+      width: 200px;
       height: 100vh;
       background-color: #f9f9f9;
       padding: 15px;
-      overflow-y: auto;  /* 添加滚动条 */
+      overflow-y: auto;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     }
     #sidebar h2 {
@@ -66,7 +83,7 @@
       padding: 0;
     }
     #sidebar ul li {
-      margin: 8px 0;
+      margin: 10px 0;
     }
     #sidebar ul li a {
       text-decoration: none;
@@ -77,34 +94,12 @@
       text-decoration: underline;
     }
     #content {
-      margin-left: 240px;
+      margin-left: 220px;
       padding: 20px;
-      width: calc(100% - 240px);
-    }
-    h1, h2, h3 {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
-    }
-    .image-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-    }
-    .image-container figure {
-      margin: 0;
-      text-align: center;
-    }
-    .image-container img {
-      max-width: 300px;
-      height: auto;
-    }
-    .arrow {
-      font-size: 40px;
+      width: calc(100% - 220px);
     }
   </style>
 </head>
-
 <body>
 
 <!-- 侧边栏 -->
@@ -113,41 +108,8 @@
   <ul id="toc"></ul>
 </div>
 
-<!-- 主要内容 -->
-<div id="content">
-  <h1 id="under-sampling-simulation">Under-sampling simulation</h1>
-
-  <h2 id="sample">Sample</h2>
-  <p>It is a randomly generated sample with $1024 \times 1024$ resolution...</p>
-
-  <h2 id="shannon-sampling-criteria">Shannon sampling criteria</h2>
-  <p>If we want to recover the signal without any loss...</p>
-
-  <h2 id="simulation-method">Simulation method</h2>
-  <p>I wanted to test the IPR reconstruction...</p>
-
-  <div class="image-container">
-    <figure>
-        <img src="./under_sampling_pic/说明图1.png" alt="Original Sample">
-        <figcaption>Original Sample</figcaption>
-    </figure>
-    <span class="arrow">&harr;</span>
-    <figure>
-        <img src="./under_sampling_pic/说明图2.png" alt="Under-sampled Image">
-        <figcaption>Under-sampled Image</figcaption>
-    </figure>
-  </div>
-
-  <h2 id="test">Test</h2>
-  <p><strong>1. Ideal case with $0.2 \mu m$ pixel size</strong></p>
-
-  <h2 id="conclusion">Conclusion</h2>
-  <p>Here we summarize the results...</p>
-</div>
-
 </body>
 </html>
-
 
 
 
