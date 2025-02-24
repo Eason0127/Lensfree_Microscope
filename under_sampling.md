@@ -1,10 +1,14 @@
 <script>
   window.MathJax = {
-    tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
-    svg: { fontCache: 'global' }
+    tex: { 
+      inlineMath: [['$', '$']], 
+      displayMath: [['$$', '$$']] 
+    },
+    svg: { fontCache: 'global' }  // 使用 SVG 方式渲染，字体更清晰
   };
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
 
 
 
