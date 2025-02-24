@@ -1,52 +1,26 @@
-<head>
-  <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['\\[', '\\]'], ['$$', '$$']],
-        processEscapes: true  // 允许 `$...$` 解析
-      },
-      svg: {
-        scale: 1.2
-      }
-    };
-
-    document.addEventListener("DOMContentLoaded", function() {
-      MathJax.typesetPromise();
-    });
-  </script>
-</head>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lensfree Microscope</title>
+
+  <!-- MathJax 解析数学公式 -->
   <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
   <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['\\[', '\\]'], ['$$', '$$']],
-        processEscapes: true  // 允许 `$...$` 解析
-      },
-      svg: {
-        scale: 1.2
-      }
-    };
-
-    document.addEventListener("DOMContentLoaded", function() {
-      MathJax.typesetPromise();
-    });
-
-    // 自动生成目录
     document.addEventListener("DOMContentLoaded", function () {
-      let toc = document.getElementById("toc");
-      let headers = document.querySelectorAll("h2, h3"); // 只获取 h2 和 h3
+      // 确保 MathJax 解析数学公式
+      if (window.MathJax) {
+        MathJax.typesetPromise();
+      }
 
+      // 自动生成目录
+      let toc = document.getElementById("toc");
+      toc.innerHTML = ""; // **清空目录，防止重复生成**
+
+      let headers = document.querySelectorAll("h2, h3"); // 只获取 h2 和 h3
       headers.forEach(header => {
         let id = header.id || header.textContent.trim().replace(/\s+/g, "-").toLowerCase();
         header.id = id;
@@ -57,6 +31,7 @@
       });
     });
   </script>
+
   <style>
     body {
       display: flex;
@@ -100,6 +75,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <!-- 侧边栏 -->
@@ -132,7 +108,7 @@
   </div>
 
   <h2 id="test">Test</h2>
-  <p>**1. Ideal case with $0.2 \mu m$ pixel size**</p>
+  <p><strong>1. Ideal case with $0.2 \mu m$ pixel size</strong></p>
 
   <h2 id="conclusion">Conclusion</h2>
   <p>Here we summarize the results...</p>
