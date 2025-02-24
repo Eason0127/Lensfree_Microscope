@@ -14,6 +14,7 @@
     };
 
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -21,52 +22,7 @@
   <title>Under-sampling simulation</title>
   <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['\\[', '\\]'], ['$$', '$$']],
-        processEscapes: true  
-      },
-      svg: { scale: 1.2 }
-    };
-
-    document.addEventListener("DOMContentLoaded", function() {
-      MathJax.typesetPromise();
-      
-      // 自动生成目录
-      let toc = document.getElementById("toc");
-      let headers = document.querySelectorAll("h2, h3"); 
-
-      headers.forEach(header => {
-        let id = header.id || header.textContent.trim().replace(/\s+/g, "-").toLowerCase();
-        header.id = id;
-
-        let li = document.createElement("li");
-        li.innerHTML = `<a href="#${id}">${header.textContent}</a>`;
-        toc.appendChild(li);
-      });
-    });
-
-    // 侧边栏折叠功能
-    function toggleSidebar() {
-      let sidebar = document.getElementById("sidebar");
-      let content = document.getElementById("content");
-      let toggleBtn = document.getElementById("toggle-btn");
-
-      if (sidebar.classList.contains("collapsed")) {
-        sidebar.classList.remove("collapsed");
-        content.classList.remove("expanded");
-        toggleBtn.innerHTML = "☰"; // 恢复按钮图标
-      } else {
-        sidebar.classList.add("collapsed");
-        content.classList.add("expanded");
-        toggleBtn.innerHTML = "→"; // 更改按钮图标
-      }
-    }
-  </script>
-
+  
   <style>
     body {
       display: flex;
@@ -168,7 +124,54 @@
 <!-- 折叠/展开按钮 -->
 <button id="toggle-btn" onclick="toggleSidebar()">☰</button>
 
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$']],
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],
+      processEscapes: true  
+    },
+    svg: { scale: 1.2 }
+  };
+
+  document.addEventListener("DOMContentLoaded", function() {
+    MathJax.typesetPromise();
+    
+    // 自动生成目录
+    let toc = document.getElementById("toc");
+    let headers = document.querySelectorAll("#content h2, #content h3"); 
+
+    headers.forEach(header => {
+      let id = header.id || header.textContent.trim().replace(/\s+/g, "-").toLowerCase();
+      header.id = id;
+
+      let li = document.createElement("li");
+      li.innerHTML = `<a href="#${id}">${header.textContent}</a>`;
+      toc.appendChild(li);
+    });
+  });
+
+  // 侧边栏折叠功能
+  function toggleSidebar() {
+    let sidebar = document.getElementById("sidebar");
+    let content = document.getElementById("content");
+    let toggleBtn = document.getElementById("toggle-btn");
+
+    if (sidebar.classList.contains("collapsed")) {
+      sidebar.classList.remove("collapsed");
+      content.classList.remove("expanded");
+      toggleBtn.innerHTML = "☰"; // 恢复按钮图标
+    } else {
+      sidebar.classList.add("collapsed");
+      content.classList.add("expanded");
+      toggleBtn.innerHTML = "→"; // 更改按钮图标
+    }
+  }
+</script>
+
 </body>
+</html>
+
 
 
 
