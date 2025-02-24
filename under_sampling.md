@@ -167,8 +167,9 @@ $$
 \end{array}
 $$
 
-> $$\text{RMS}=\sqrt{\frac{1}{n}\sum _{i=1}^n(\text{Reconstructed amp}_{i}-\text{Recorded amp}_i)^2}$$
->, $i$ is the pixel index.
+$$\text{RMS}=\sqrt{\frac{1}{n}\sum _{i=1}^n(\text{Reconstructed amp}_{i}-\text{Recorded amp}_i)^2}$$
+
+, $i$ is the pixel index.
 
 <div align="center">
     <figure>
