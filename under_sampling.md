@@ -10,6 +10,18 @@
   </script>
 </head> -->
 
+<head>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],  // 识别 `$...$` 作为行内公式
+        displayMath: [['$$', '$$']] // 识别 `$$...$$` 作为块级公式
+      },
+      svg: { fontCache: 'global' }  // 采用 SVG 渲染，字体更清晰
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
 
 
 # Under-sampling simulation
