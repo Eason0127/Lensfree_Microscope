@@ -10,13 +10,26 @@
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   
   <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true  // 允许 `$...$` 解析
+      },
+      svg: {
+        scale: 1.2
+      }
+    };
+
     document.addEventListener("DOMContentLoaded", function () {
       // 确保 MathJax 解析数学公式
       if (window.MathJax) {
-        MathJax.typesetPromise();
+        setTimeout(() => {
+          MathJax.typesetPromise();
+        }, 100);
       }
 
-      // 自动生成目录
+      // 目录生成逻辑
       let toc = document.getElementById("toc");
       toc.innerHTML = ""; // **清空目录，防止重复生成**
 
@@ -116,6 +129,7 @@
 
 </body>
 </html>
+
 
 
 
