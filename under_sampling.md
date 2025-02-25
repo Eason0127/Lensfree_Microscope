@@ -37,16 +37,16 @@ It is a random generated sample with $1024 \times 1024$ resolution. I added some
 
 ## Noise
 
-<div align="center">
 
 Noise|Characteristic
 ---|---
 Thermal noise|White noise
 shot noise|White noise
 Readout noise|Broadband noise
-Dark current noise|No idea
+Dark current noise|Poisson distribution
 
-</div>
+1. **Thermal noise**
+   It is caused by the random thermal motion of free electrons in the resistor element under the action of temperature. It can be described by Gaussian distribution $N(0,\sigma)$
 
 
 ## Shannon sampling criteria
