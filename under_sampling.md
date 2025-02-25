@@ -47,6 +47,7 @@ Readout noise|Broadband noise
 Dark current noise|Poisson distribution
 
 1. **Thermal noise**
+   
    It is caused by the random thermal motion of free electrons in the resistor element under the action of temperature. It can be described by Gaussian distribution $N(0,\sigma ^2)$ .
 
    $$\sigma = \sqrt{4k_bTRB}$$
