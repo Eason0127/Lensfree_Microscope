@@ -35,6 +35,20 @@ It is a random generated sample with $1024 \times 1024$ resolution. I added some
     </figure>
 </div>
 
+## Noise
+
+<div align="center">
+
+Noise|Characteristic
+---|---
+Thermal noise|White noise
+shot noise|White noise
+Readout noise|Broadband noise
+Dark current noise|No idea
+
+</div>
+
+
 ## Shannon sampling criteria
 
 If we want to recover the signal without any loss we must obey the Shannon sampling criteria, so we can have the minimum sampling distance by as follows: 
