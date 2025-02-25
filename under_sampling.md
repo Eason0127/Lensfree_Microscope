@@ -50,7 +50,7 @@ Dark current noise|Poisson distribution
    
    It is caused by the random thermal motion of free electrons in the resistor element under the action of temperature. It can be described by Gaussian distribution $N(0,\sigma ^2)$ .
 
-$$\sigma = \sqrt{4k_bTRB}$$
+   $$\sigma = \sqrt{4k_bTRB}$$
 
 2. **Shot noise**
    
