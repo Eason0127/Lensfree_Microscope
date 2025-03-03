@@ -20,8 +20,8 @@
 </head>
 
 - [Review](#review)
-- [Modification](#modification)
-  - [](#)
+- [Question](#question)
+- [Noise simulation](#noise-simulation)
 
 
 ## Review
@@ -46,8 +46,25 @@ In previous, I made several mistakes.
    It is to find a standard to verify if the set up works well rather than just to see what's the reconstruction result when under sampling.
 
 
-4. **Forget to limit the band**
+## Question
 
-## Modification
+1. Q1: Downsampling on the sample
+   
+   Due to the spectrum support limit: $f_x^2 + f_y^2 \leq \frac{1}{\lambda ^2}$ . Because of the sensor limit, we will lose huge amount of high frequency information. When we downsize the sample, can we use this method below? This method has problems too for example we lose lots of energy.
 
-### 
+   <div align="center">
+       <figure>
+           <img src="./under_sampling_pic/Q1.png" width="400">
+       </figure>
+   </div>
+
+      <div align="center">
+       <figure>
+           <img src="./under_sampling_pic/Q11.png" width="400">
+       </figure>
+   </div>
+
+## Noise simulation
+
+The full well capacity for IMX477 is around 8000 $e^-$ . 
+   
