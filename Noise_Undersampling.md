@@ -19,11 +19,18 @@
   </script>
 </head>
 
-## Noise and undersampling simulation
+## Noise and undersampling simulation(18/03/2025)
+
+The goal of this simulation is to try to figure out what would happen in our set up in which case we are going to have down-sampling(due to pixel size limitation) and noise issues. Also some metrics should be found to help us tell if the set up works as we expected.
+
+---
 
 ### Review
 
 1. **Downsampling**
+
+> The maximum frequency that the sensor can detect below is replaced with $f_{max}$.
+   
    Before the meeting(17/03/25), the way I simulate the downsampling is:
 
    1. Propagate the light from sample to sensor and get the hologram
@@ -32,11 +39,31 @@
    
    Problem:
 
-   I neglect that in reality the field will always be continuous. I don't need to care about the dimension of the image but its frequencies. If I don't want down sampling, I can just filter the frequencies that are higher than the maximum frequency that the sensor can detect. If I want to simulate downsampling, I can control the filter to make sure some of the frequencies are higher than the maximum frequency that the sensor can detect. This way is more general and easy to operate and I don't need to care about the dimension problem.
+   I neglect $f_{max}$ and this may cause aliasing especially when high frequency is exsited in the image. So before I propagte the object field, I should first apply a fourier transform on the image and then filter its frequencies according to $f_{max}$. 
 
-<span style="color:red">Just 1 concern: 
-If I filter the image, should I compare the reconstruction result with the image filtered or the original image?(I think it's the filtered image.) For example, If I want to simulate the reconstruction that obey the Shannon sampling criteria, I should filter the image to make sure the frequencies are all lower than the maximum frequence the sensor can detect and based on that filtered image, I get the reconstruction and which I should compare with? The filtered image or the original image?
-</span>
 
+
+2. **Noise simulation**
+   
+I should mainly consider quantization noise and dark current noise.
+
+### To do next
+
+At first, I can just simply consider the noise as white Guassian noise. I will test how the reconstruction would be like with image of different level of filtering which means its maximum frequency can be $[f_{max}-\Delta,f_{max}+\Delta]$ and with different level of noise to see the influence of different SNR. I will try to give a reasonable range of noise and frequency (image) that can still get acceptable reconstruction results. I will use the datas to draw an image like the image below. Of course, it will be much more complex than this but just for example. 
+
+<div align="center">
+    <figure>
+        <img src="./under_sampling_pic/heatmap.png" width="400">
+    </figure>
+</div>
+
+**This is what I'm going to do:**
+1. Filter the image to different maximum frequencies $[f_{max}-\Delta,f_{max}+\Delta]$ .
+2. Do forward propagation based on the filtered image to get hologram1.
+3. Add different level of white Guassian noise on hologram1 to get hologram2.
+4. Down sample hologram2 according to the sensor to get hologram3.
+5. Reconstruct the filtered image based on hologram3.
+6. Collect datas.
+   
 
 
