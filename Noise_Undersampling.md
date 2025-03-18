@@ -52,7 +52,7 @@ In the meeting I was adviced to only focus on dark current noise and quantizatio
 
 ### To do next
 
-At first, I can just simply consider the noise as white Guassian noise. I will test how the reconstruction would be like with image of different level of filtering which means its maximum frequency can be $[f_{max}-\Delta,f_{max}+\Delta]$ and with different level of noise to see the influence of different SNR. I will try to give a reasonable range of noise and frequency (image) that can still get acceptable reconstruction results. I will use the datas to draw an image like the image below. Of course, it will be much more complex than this but just for example. When this is done, then I can go deeper in the noise considering quantization noise and dark current noise.
+At first, I can just simply consider the noise as white Guassian noise. I will test how the reconstruction would be like with image of different level of filtering which means its maximum frequency can be $[f_{max}-\Delta,f_{max}+\Delta]$ and with different level of noise to see the influence of different SNR. I will try to give a reasonable range of noise and frequency (image) within which we can still get acceptable reconstruction results. I will use the datas to draw an image like the image below. Of course, it will be much more complex than this but just for example. When this is done, then I can go deeper in the noise considering quantization noise and dark current noise.
 
 
 <div align="center">
