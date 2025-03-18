@@ -47,7 +47,7 @@ The goal of this simulation is to try to figure out what would happen in our set
    
 First, I want to explain shot noise again because I found I used to have some misunderstandings. Because the generation of photons and electrons is discrete and random, when you want to discretize the signal, the number of photons or electrons detected at a given time is uncertain and follows a Poisson distribution. If the exposure time is long enough, the Poisson distribution can be approximated by a normal distribution. So both the noise from photon arrival and dark current generation are types of shot noise. They differ only in their origin. The former is due to the incoming light, and the latter is due to thermal effects within the sensor when don't have illlumination (the heat will also cause energy transition even without light and hense generate electrons).
 
-In my case, now I should only focus on dark current noise and quantization noise. <span style="color:red;">I don't understand why these two take the dominance.</span> But at the very begining, maybe I can just take them all as a white Gaussian noise and then I can go deeper to consider these two noises.
+In the meeting I was adviced to only focus on dark current noise and quantization noise. <span style="color:red;">I don't understand why these two take the dominance.</span> But at the very begining, maybe I can just take them all as a white Gaussian noise and then I can go deeper to consider these two noises.
 
 
 ### To do next
