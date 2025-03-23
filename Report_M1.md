@@ -149,7 +149,7 @@ In phase 1, the following work is done:
 3. Sample the hologram field.
 4. Add different levels of noise on the sampled hologram to simulate the real life case.
 5. Reconstruct the image based on the IPR algorithm and collect datas.
-6. Change the cut-off frequency $f'_{max}\in [f_{max}, f_{max} + \Delta]$ and repeat step 2 ~ 5 to analyze the reconstruction when it is under under-sampling. 
+6. Change the cut-off frequency $f'_{max}=f_{max}$ to $[f_{max}, f_{max} + \Delta]$ and repeat step 2 ~ 5 to analyze the reconstruction when it is under under-sampling. 
 
 **First** I want to show the reconstruction results without any noise but with cut-off frequencies from $f_{max}$ to $f_{max} + \Delta$ to see the reconstructions when having different levels of down-sampling. In the image below, on the left is the original image and on the right is the filtered image. As can be seen, the amplitude of the filtered image is smaller because it loses some energy when filtering and the edges of the small circles are not as sharp as the original image. This is also due to filtering, it loses the high frequency parts and hence loses some details.
 
@@ -202,7 +202,7 @@ I can give more examples, below is the another filtered image and it's SSIM curv
     </figure>
 </div>
 
-The following picture can give you a more intuitive feeling of the impact of SNR on reconstruction. The SNR of the left and right image is 43 dB and 19 dB separately. Their corresponding SSIM is around 0.7 and 0.5 respectively. [The original image is shown before you can click here to check](./reportM1_pic/样本二原图.png)
+The following picture can give you a more intuitive feeling of the impact of SNR on reconstruction. The SNR of the left and right image is 43 dB and 19 dB separately. Their corresponding SSIM is around 0.7 and 0.5 respectively. [The original image is shown before you can click here to check](./reportM1_pic/样本二.png)
 
 
 
