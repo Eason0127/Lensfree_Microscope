@@ -202,7 +202,7 @@ I can give more examples, below is the another filtered image and it's SSIM curv
     </figure>
 </div>
 
-The following picture can give you a more intuitive feeling of the impact of SNR on reconstruction. The SNR of the left and right image is 43 dB and 19 dB separately. Their corresponding SSIM is around 0.7 and 0.5 respectively. [The original image is shown before you can click here to check](./reportM1_pic/.png)
+The following picture can give you a more intuitive feeling of the impact of SNR on reconstruction. The SNR of the left and right image is 43 dB and 19 dB separately. Their corresponding SSIM is around 0.7 and 0.5 respectively. [The original image is shown before you can click here to check.](./reportM1_pic/.png)
 
 
 
