@@ -214,3 +214,5 @@ The following picture can give you a more intuitive feeling of the impact of SNR
     <img src="./reportM1_pic/样本二19dB.png" alt="图片2" style="width: 100%;">
   </div>
 </div>
+
+I think we can use SSIM and RMS to analyze the quality of reconstruction. RMS can measure the overall quality of reconstruction, while SSIM can better reflect the reconstruction quality of details and is more in line with our eye's intuitive feeling. However, to use SSIM, we need a traditional microscope to image the sample to obtain the "real image" we need.
