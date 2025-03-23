@@ -149,9 +149,9 @@ In phase 1, the following work is done:
 3. Sample the hologram field.
 4. Add different levels of noise on the sampled hologram to simulate the real life case.
 5. Reconstruct the image based on the IPR algorithm and collect datas.
-6. Change the cut-off frequency $f'_{max}\in [f_{max},f_{max} + \Delta]$ and repeat step 2 ~ 5 to analyze the reconstruction when it is under under-sampling. 
+6. Change the cut-off frequency $f'_{max}\in [f_{max}, f_{max} + \Delta]$ and repeat step 2 ~ 5 to analyze the reconstruction when it is under under-sampling. 
 
-First I want to show the reconstruction results without any noise but with cut-off frequencies from $f_{max}$ to $f_{max} + \Delta$ to see the reconstructions when having different levels of down-sampling. In the image below, on the left is the original image and on the right is the filtered image. As can be seen, the amplitude of the filtered image is smaller because it loses some energy when filtering and the edges of the small circles are not as sharp as the original image. This is also due to filtering, it loses the high frequency parts and hence loses some details of the image.
+First I want to show the reconstruction results without any noise but with cut-off frequencies from $f_{max}$ to $f_{max} + \Delta$ to see the reconstructions when having different levels of down-sampling. In the image below, on the left is the original image and on the right is the filtered image. As can be seen, the amplitude of the filtered image is smaller because it loses some energy when filtering and the edges of the small circles are not as sharp as the original image. This is also due to filtering, it loses the high frequency parts and hence loses some details.
 
 > There would be many filtered image based on different cuf-off frequencies and this one is just for example.
 
@@ -164,5 +164,32 @@ First I want to show the reconstruction results without any noise but with cut-o
   </div>
 </div>
 
+This image below shows a decrease in SSIM when the cut-off frequency goes larger and larger. $f_0$ is the maximum frequency that the sensor can detect which is $f_{max}$. With the index increasing by $1$, the cut-off frequency increases by $10\%$ . For example, $f_2$ is $120\%$ of $f_0$ . The SSIM metric decreases because the additional frequencies beyond $f_0$ are not present in the captured data. Thus, including them (or attempting to reconstruct them) introduces artifacts and aliasing, degrading the overall reconstruction quality. The SSIM does not change from $f_4$ onwards because the maximum frequency of the image is between $f_3$ and $f_4$. Therefore, even if the cutoff frequency is increased after $f_4$, there will be no change because all the frequencies of the image have been included.  This is in line with the expectation.
+
+<div align="center">
+    <figure>
+        <img src="./reportM1_pic/复杂样本无噪声SSIM.png" width="500">
+    </figure>
+</div>
+
+In conclusion:
+
+- **At $f_0$**, the cutoff frequency matches the sensor’s maximum frequency so only valid, alias-free frequencies are included.
+- **From $f_0$ to $f_4$**, increasing the cutoff gradually introduces frequencies that the sensor could not detect, which degrades reconstruction quality as measured by SSIM.
+- **Beyond $f_4$**, SSIM plateaus because the maximum frequency of the image is already smaller than the cut-off frequency and keep increasing the cut-off value won't introduce any undetected information so the SSIM plateaus.
+
+I can give more examples, below is the another filtered image and it's SSIM curve. The result is basically the same.
 
 
+
+<div align="center">
+    <figure>
+        <img src="./reportM1_pic/样本1过滤图.png" width="500">
+    </figure>
+</div>
+
+<div align="center">
+    <figure>
+        <img src="./reportM1_pic/样本无噪声SSIM.png" width="500">
+    </figure>
+</div>
