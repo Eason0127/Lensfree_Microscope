@@ -22,6 +22,9 @@
 - [Lensless Microscope introduction](#lensless-microscope-introduction)
   - [Hologram](#hologram)
   - [Angular spectrum method](#angular-spectrum-method)
+  - [Noise issue](#noise-issue)
+- [Sampling simulation with noise](#sampling-simulation-with-noise)
+  - [Phase 1](#phase-1)
 
 
 # Lensless Microscope introduction
@@ -69,9 +72,9 @@ or we can write in a more simple form:
 
 $$U(x,y,z)=\mathcal{F}^{-1}\{\mathcal{F}\{U(x,y,0)\}\cdot H(x,y,z)\}$$
 
----
+**Code Simulation:**
 
-**The way how I simulate:**
+In practice, it's not so hard to simulate the angular spectrum method. The only difficulty is to calculate the frequency index. As 
 
     def Transfer_function(W, H, distance, wavelength, pixelSize, numPixels):
         FX = W / (pixelSize * numPixels) # Calculate the index of frequency grid
@@ -88,6 +91,18 @@ $$U(x,y,z)=\mathcal{F}^{-1}\{\mathcal{F}\{U(x,y,0)\}\cdot H(x,y,z)\}$$
         transfer = Transfer_function(W, H, distance, 532e-9, pixelSize, numPixels)
         gt_prime = fftshift(ifft2(ifftshift(GT * transfer)))
         return gt_prime
+
+## Noise issue
+
+In practice, the detection will definitly include noise and this will influence the reconstruction result in a negative way.
+
+# Sampling simulation with noise
+
+The goal of this simulation is to try to figure out what would happen in our set up in which case we are going to have down-sampling(due to pixel size limitation) and noise issues. Also some metrics should be found to help us tell if the set up works as we expected.
+
+---
+
+## Phase 1
 
 
 
