@@ -22,6 +22,9 @@
 - [Lensless Microscope introduction](#lensless-microscope-introduction)
   - [Hologram](#hologram)
   - [Angular spectrum method](#angular-spectrum-method)
+  - [Iterative phase retrieval algorithm](#iterative-phase-retrieval-algorithm)
+  - [Twin image and artifact](#twin-image-and-artifact)
+  - [Shannon sampling criteria](#shannon-sampling-criteria)
   - [Noise issue](#noise-issue)
 - [Sampling simulation with noise](#sampling-simulation-with-noise)
   - [Phase 1](#phase-1)
@@ -29,8 +32,8 @@
 
 # Lensless Microscope introduction
 
-## Hologram
 
+## Hologram
 
 
 
@@ -74,7 +77,19 @@ $$U(x,y,z)=\mathcal{F}^{-1}\{\mathcal{F}\{U(x,y,0)\}\cdot H(x,y,z)\}$$
 
 **Code Simulation:**
 
-In practice, it's not so hard to simulate the angular spectrum method. The only difficulty is to calculate the frequency index. As 
+In practice, it's not so hard to simulate the angular spectrum method. The only difficulty is to calculate the frequency index. The frequency index can be calculated by 
+
+$$f_x=\frac{k_x}{\Delta x},f_y=\frac{k_y}{\Delta y}$$
+
+$k_x,k_y$ is the index of the discretized grid and $\Delta x, \Delta y$ is the spatial sampling distance of the sensor. This can be written more detailly as 
+
+$$f_x = \frac{x-\frac{N}{2}-1}{N\times \Delta x},f_y = \frac{y-\frac{N}{2}-1}{N\times \Delta y}$$
+
+$N$ is the number of the pixels, $x,y$ is the spatial coordination without centralization. If the coordination is already centralized then it can be simplified as
+
+$$f_x = \frac{W}{N\Delta x},f_y = \frac{H}{N\Delta y}$$
+
+$W,H$ is the centralized spatial grid index. Then all the work remained is to write the codes according to the angular spectrum method calculation process. The whole process is shown below.
 
     def Transfer_function(W, H, distance, wavelength, pixelSize, numPixels):
         FX = W / (pixelSize * numPixels) # Calculate the index of frequency grid
@@ -92,18 +107,62 @@ In practice, it's not so hard to simulate the angular spectrum method. The only 
         gt_prime = fftshift(ifft2(ifftshift(GT * transfer)))
         return gt_prime
 
+
+## Iterative phase retrieval algorithm
+
+## Twin image and artifact
+
+## Shannon sampling criteria
+
 ## Noise issue
 
-In practice, the detection will definitly include noise and this will influence the reconstruction result in a negative way.
+In practice, the detection will definitly include noise and this will influence the reconstruction result in a negative way. The following types of noise is very commen.
+
+1. **Shot noise and dark current noise**
+    The generation of photons and electrons is discrete and random, when you want to discretize the signal, the number of photons or electrons detected at a given time is uncertain and follows a Poisson distribution. If the exposure time is long enough, the Poisson distribution can be approximated by a normal distribution. So both the noise from photon arrival and dark current generation are types of shot noise. They differ only in their origin. The former is due to the incoming light, and the latter is due to thermal effects within the sensor when don't have illlumination (the heat will also cause energy transition even without light and hense generate electrons).
+
+    **Code simulation**
+    Before the simulation, we should assume the full well capacity
+
+
+2. **Quantization noise**
+   Quantization noise is the error generated in the process of converting a continuous analog signal to a discrete digital signal. When the ADC (analog-to-digital converter) maps a continuous signal to a finite number of discrete levels, some subtle changes in the original signal are lost, and this error is called quantization noise.
+
+   **Calculation**
+
+   If the bit depth of the sensor is B, then 
+
+---
 
 # Sampling simulation with noise
 
 The goal of this simulation is to try to figure out what would happen in our set up in which case we are going to have down-sampling(due to pixel size limitation) and noise issues. Also some metrics should be found to help us tell if the set up works as we expected.
 
----
-
 ## Phase 1
 
+At this stage, the noise would be simplified as a white Guassian noise. When this simulation is done, I would then go deeper in the noise simulation considering different ratio of different noises. 
+
+In phase 1, the following work is done:
+
+1. Filtering the original image according to the cut-off frequency $f_{max}$ based on the sensor according to the Shannon sampling criteria.
+2. Apply forward-propagation on the filtered image to get the hologram.
+3. Sample the hologram field.
+4. Add different levels of noise on the sampled hologram to simulate the real life case.
+5. Reconstruct the image based on the IPR algorithm and collect datas.
+6. Change the cut-off frequency $f'_{max}\in [f_{max},f_{max} + \Delta]$ and repeat step 2 ~ 5 to analyze the reconstruction when it is under under-sampling. 
+
+First I want to show the reconstruction results without any noise but with cut-off frequencies from $f_{max}$ to $f_{max} + \Delta$ to see the reconstructions when having different levels of down-sampling. In the image below, on the left is the original image and on the right is the filtered image. As can be seen, the amplitude of the filtered image is smaller because it loses some energy when filtering and the edges of the small circles are not as sharp as the original image. This is also due to filtering, it loses the high frequency parts and hence loses some details of the image.
+
+> There would be many filtered image based on different cuf-off frequencies and this one is just for example.
+
+<div style="display: flex; justify-content: space-between;">
+  <div style="flex: 1; padding: 5px;">
+    <img src="./reportM1_pic/样本二原图.png" alt="图片1" style="width: 100%;">
+  </div>
+  <div style="flex: 1; padding: 5px;">
+    <img src="./reportM1_pic/样本二.png" alt="图片2" style="width: 100%;">
+  </div>
+</div>
 
 
 
