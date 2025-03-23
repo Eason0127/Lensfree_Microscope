@@ -151,7 +151,7 @@ In phase 1, the following work is done:
 5. Reconstruct the image based on the IPR algorithm and collect datas.
 6. Change the cut-off frequency $f'_{max}\in [f_{max}, f_{max} + \Delta]$ and repeat step 2 ~ 5 to analyze the reconstruction when it is under under-sampling. 
 
-First I want to show the reconstruction results without any noise but with cut-off frequencies from $f_{max}$ to $f_{max} + \Delta$ to see the reconstructions when having different levels of down-sampling. In the image below, on the left is the original image and on the right is the filtered image. As can be seen, the amplitude of the filtered image is smaller because it loses some energy when filtering and the edges of the small circles are not as sharp as the original image. This is also due to filtering, it loses the high frequency parts and hence loses some details.
+**First** I want to show the reconstruction results without any noise but with cut-off frequencies from $f_{max}$ to $f_{max} + \Delta$ to see the reconstructions when having different levels of down-sampling. In the image below, on the left is the original image and on the right is the filtered image. As can be seen, the amplitude of the filtered image is smaller because it loses some energy when filtering and the edges of the small circles are not as sharp as the original image. This is also due to filtering, it loses the high frequency parts and hence loses some details.
 
 > There would be many filtered image based on different cuf-off frequencies and this one is just for example.
 
@@ -164,7 +164,7 @@ First I want to show the reconstruction results without any noise but with cut-o
   </div>
 </div>
 
-This image below shows a decrease in SSIM when the cut-off frequency goes larger and larger. $f_0$ is the maximum frequency that the sensor can detect which is $f_{max}$. With the index increasing by $1$, the cut-off frequency increases by $10\%$ . For example, $f_2$ is $120\%$ of $f_0$ . The SSIM metric decreases because the additional frequencies beyond $f_0$ are not present in the captured data. Thus, including them (or attempting to reconstruct them) introduces artifacts and aliasing, degrading the overall reconstruction quality. The SSIM does not change from $f_4$ onwards because the maximum frequency of the image is between $f_3$ and $f_4$. Therefore, even if the cutoff frequency is increased after $f_4$, there will be no change because all the frequencies of the image have been included.  This is in line with the expectation.
+This image below shows a decrease in SSIM when the cut-off frequency goes larger and larger. $f_0$ is the maximum frequency that the sensor can detect which is $f_{max}$. With the index increasing by $1$, the cut-off frequency increases by $10\%$ . For example, $f_2$ is $120\%$ of $f_0$ . The SSIM metric decreases because the additional frequencies beyond $f_0$ are not present in the captured data. Thus, including them (or attempting to reconstruct them) introduces artifacts and aliasing, degrading the overall reconstruction quality. The SSIM does not change since $f_4$ because the maximum frequency of the image is between $f_3$ and $f_4$. Therefore, even if the cutoff frequency is increased, there will be no change because all the frequencies of the image have been included. This is in line with the expectation.
 
 <div align="center">
     <figure>
@@ -192,4 +192,25 @@ I can give more examples, below is the another filtered image and it's SSIM curv
     <figure>
         <img src="./reportM1_pic/样本无噪声SSIM.png" width="500">
     </figure>
+</div>
+
+**Then**, still use the first sample shown before but this time noise is added. It can be concluded that when noise is added to the same sample, for any cutoff frequency, having a higher SNR consistently has a better reconstruction. In other words, noise level becomes the dominant factor: even if you optimize the cutoff frequency, excessive noise can still degrade the image quality significantly. Conversely, if noise is minimal (i.e., SNR is high), the reconstruction tends to remain relatively good even if the cutoff frequency is not perfectly set. Hence, in this scenario, the influence of noise on the reconstructed image's quality outweighs that of the cutoff frequency.
+
+<div align="center">
+    <figure>
+        <img src="./reportM1_pic/样本二热图.png" width="800">
+    </figure>
+</div>
+
+The following picture can give you a more intuitive feeling of the impact of SNR on reconstruction. The SNR of the left and right image is 43 dB and 19 dB separately. Their corresponding SSIM is around 0.7 and 0.5 respectively. [The original image is shown before you can click here to check](./reportM1_pic/样本二原图.png)
+
+
+
+<div style="display: flex; justify-content: space-between;">
+  <div style="flex: 1; padding: 5px;">
+    <img src="./reportM1_pic/样本二43dB.png" alt="图片1" style="width: 100%;">
+  </div>
+  <div style="flex: 1; padding: 5px;">
+    <img src="./reportM1_pic/样本二19dB.png" alt="图片2" style="width: 100%;">
+  </div>
 </div>
