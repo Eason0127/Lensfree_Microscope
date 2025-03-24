@@ -122,7 +122,14 @@ In practice, the detection will definitly include noise and this will influence 
     The generation of photons and electrons is discrete and random, when you want to discretize the signal, the number of photons or electrons detected at a given time is uncertain and follows a Poisson distribution. If the exposure time is long enough, the Poisson distribution can be approximated by a normal distribution. So both the noise from photon arrival and dark current generation are types of shot noise. They differ only in their origin. The former is due to the incoming light, and the latter is due to thermal effects within the sensor when don't have illlumination (the heat will also cause energy transition even without light and hense generate electrons).
 
     **Code simulation**
-    Before the simulation, we should assume the full well capacity
+    Before the simulation, we should have a knowledge of the full well capacity. Full well capacity of a sensor represents the maximum number of electrons that each pixel can store. For IMX477 its full well capacity is around $8000e^-$. Then I can set $8000e^-$ as the scaling factor to transform the ideal intensity of the hologram to a form in electrons. Normally, the intensity of the hologram is normalized and its range is from 0 to 1. Now I can control the level of this noise by choosing the number of noise electrons which will influence the standard variance of the distribution.
+
+        scaling_factor = 8000 # Assume full well capacity is 8000e-
+        ideal_intensity = (am_undersampled_hologram ** 2) * scaling_factor # Transform intensity to the scale of photons or electrons
+        noise_electrons = 750 # Choose the number of noise electrons
+        noise_standard = noise_electrons / scaling_factor # Transform noise form scale of electrons to scale of intensity
+        Dark_current_noise = np.random.normal(0, noise_standard, ideal_intensity.shape) # Simulate the noise
+
 
 
 2. **Quantization noise**
@@ -130,7 +137,9 @@ In practice, the detection will definitly include noise and this will influence 
 
    **Calculation**
 
-   If the bit depth of the sensor is B, then 
+   If the bit depth of the sensor is B, then  can be calculated as 
+
+   $$?=2^B - 1$$
 
 ---
 
