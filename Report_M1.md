@@ -20,6 +20,7 @@
 </head>
 
 - [Lensless Microscope introduction](#lensless-microscope-introduction)
+  - [What is lensless microscope?](#what-is-lensless-microscope)
   - [Hologram](#hologram)
   - [Angular spectrum method](#angular-spectrum-method)
   - [Iterative phase retrieval algorithm](#iterative-phase-retrieval-algorithm)
@@ -32,8 +33,14 @@
 
 # Lensless Microscope introduction
 
+## What is lensless microscope?
+
+Lensless microscope is the 
 
 ## Hologram
+
+In 1948, Dennis Gabor proposed a novel two-step, lensless imaging process which he called wavefront reconstruction. It's now called **holography**. When a suitable coherent reference wave is present simultaneously with the light diffracted by or scattered from an object, then the information about both the amplitude and phase of the diffracted or scattered waves can be recorded, although given the fact that the sensor can only record intensity information. The phase information somehow be converted to intensity variations for recording. The recording of the pattern of interference of the object wave and reference wave is called **hologram**.
+
 
 
 
@@ -122,7 +129,9 @@ In practice, the detection will definitly include noise and this will influence 
     The generation of photons and electrons is discrete and random, when you want to discretize the signal, the number of photons or electrons detected at a given time is uncertain and follows a Poisson distribution. If the exposure time is long enough, the Poisson distribution can be approximated by a normal distribution. So both the noise from photon arrival and dark current generation are types of shot noise. They differ only in their origin. The former is due to the incoming light, and the latter is due to thermal effects within the sensor when don't have illlumination (the heat will also cause energy transition even without light and hense generate electrons).
 
     **Code simulation**
-    Before the simulation, we should have a knowledge of the full well capacity. Full well capacity of a sensor represents the maximum number of electrons that each pixel can store. For IMX477 its full well capacity is around $8000e^-$. Then I can set $8000e^-$ as the scaling factor to transform the ideal intensity of the hologram to a form in electrons. Normally, the intensity of the hologram is normalized and its range is from 0 to 1. Now I can control the level of this noise by choosing the number of noise electrons which will influence the standard variance of the distribution.
+    Before the simulation, we should have a knowledge of the full well capacity. Full well capacity of a sensor represents the maximum number of electrons that each pixel can store. For IMX477 its full well capacity is around $8000e^-$. Then I can set $8000e^-$ as the scaling factor to transform the ideal intensity of the hologram to a form in electrons. Normally, the intensity of the hologram is normalized and its range is from 0 to 1. Now I can control the level of this noise by choosing the number of noise electrons which will influence the standard variance of the normal distribution. The code is shown below.
+
+    > Notice: Don't forget to transform the field back to intensity.
 
         scaling_factor = 8000 # Assume full well capacity is 8000e-
         ideal_intensity = (am_undersampled_hologram ** 2) * scaling_factor # Transform intensity to the scale of photons or electrons
@@ -139,7 +148,10 @@ In practice, the detection will definitly include noise and this will influence 
 
    If the bit depth of the sensor is B, then  can be calculated as 
 
-   $$?=2^B - 1$$
+   $$D=2^B - 1$$
+
+   **Simulation**
+
 
 ---
 
