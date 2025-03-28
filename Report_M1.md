@@ -21,7 +21,7 @@
 
 - [Lensless Microscope introduction](#lensless-microscope-introduction)
   - [What is lensless microscope?](#what-is-lensless-microscope)
-  - [Hologram](#hologram)
+  - [Holography and hologram](#holography-and-hologram)
   - [Angular spectrum method](#angular-spectrum-method)
   - [Iterative phase retrieval algorithm](#iterative-phase-retrieval-algorithm)
   - [Twin image and artifact](#twin-image-and-artifact)
@@ -35,12 +35,18 @@
 
 ## What is lensless microscope?
 
-Lensless microscope is the 
+Lensless microscopy is a microscopic imaging system that does not require any lenses. It captures the hologram produced by the sample beam and reference beam, and then uses computational algorithms (such as iterative reconstruction algorithms) to convert these diffraction patterns into high-resolution images. This technology eliminates expensive and bulky optical components and has the advantages of small size, low cost, easy integration and portability. It is often used in applications such as portable diagnosis.
 
-## Hologram
+
+## Holography and hologram
 
 In 1948, Dennis Gabor proposed a novel two-step, lensless imaging process which he called wavefront reconstruction. It's now called **holography**. When a suitable coherent reference wave is present simultaneously with the light diffracted by or scattered from an object, then the information about both the amplitude and phase of the diffracted or scattered waves can be recorded, although given the fact that the sensor can only record intensity information. The phase information somehow be converted to intensity variations for recording. The recording of the pattern of interference of the object wave and reference wave is called **hologram**.
 
+Holography is a two-step process which is image capture and reconstruction. For in-line holography, the illumination produces two kinds of beam. One is the reference beam $R$ . This beam remains unscattered which means there's no interaction with the object. Another beam is the object beam $O$. This beam has been scattered by the object. The degree of the coherence of illumination should be large enough to permit the reference and object beams to interfere with each other which giving rise to the interference pattern. This pattern's intensity is recorded by the sensor and is called hologram. It can be described by
+
+$$|R+O| ^2 = |R|^2+|O|^2+R^*O+RO^*$$
+
+$|R|^2$ is an uniform background signal and this contains no useful information. $|O|^2$ is a self-interference pattern. It's caused by the diffracted beams but normally its intensity is very low compared with other terms so it can be neglected. 
 
 
 
@@ -237,3 +243,6 @@ The following picture can give you a more intuitive feeling of the impact of SNR
 </div>
 
 I think we can use SSIM and RMS to analyze the quality of reconstruction. RMS can measure the overall quality of reconstruction, while SSIM can better reflect the reconstruction quality of details and is more in line with our eye's intuitive feeling. However, to use SSIM, we need a traditional microscope to image the sample to obtain the "real image" we need.
+
+**Meeting review**
+
