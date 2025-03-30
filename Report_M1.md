@@ -23,6 +23,7 @@
   - [What is lensless microscope?](#what-is-lensless-microscope)
   - [Holography and hologram](#holography-and-hologram)
   - [Angular spectrum method](#angular-spectrum-method)
+  - [Hologram Acquisition](#hologram-acquisition)
   - [Iterative phase retrieval algorithm](#iterative-phase-retrieval-algorithm)
   - [Twin image and artifact](#twin-image-and-artifact)
   - [Shannon sampling criteria](#shannon-sampling-criteria)
@@ -46,7 +47,7 @@ Holography is a two-step process which is image capture and reconstruction. For 
 
 $$|R+O| ^2 = |R|^2+|O|^2+R^*O+RO^*$$
 
-$|R|^2$ is an uniform background signal and this contains no useful information. $|O|^2$ is a self-interference pattern. It's caused by the diffracted beams but normally its intensity is very low compared with other terms so it can be neglected. 
+$|R|^2$ is an uniform background signal and this contains no useful information. $|O|^2$ is a self-interference pattern. It's caused by the diffracted beams but normally its intensity is very low compared with other terms so it can be neglected. The last two terms which are $R^*O$ and $RO^*$ are the dominant part in terms of our interest. They are proportional to the original obeject wave and its complex conjugate respectively. $RO^*$ this term is the cause of twin image artifact in in-line holographic imaging because this inverse curvature is produced by the conjugate object wave. In lensless microscope, we should try to do our best to mitigate its effects, but ultimately we can't eliminate it completely because it occurs due to physical limitations unless we turn to another holographic architecture which is off-axis. When the algorithm tries to reconstruct the image, it can tell which one is the "true image" and which one is "twin image" because they have the same modulus when computing.
 
 
 
@@ -120,6 +121,52 @@ $W,H$ is the centralized spatial grid index. Then all the work remained is to wr
         gt_prime = fftshift(ifft2(ifftshift(GT * transfer)))
         return gt_prime
 
+
+## Hologram Acquisition
+
+As we are already equipped with hologram knowledge and angular spectrum method, we can simulate our hologram. The first step, of course is to read the sample image and in this step it's better to normalize the image while reading it because this can facilitate calculation and give us a more intuitive feeling. 
+
+    # --- Define the image reading function ---
+    def load_and_normalize_image(filepath):
+      image = Image.open(filepath).convert('L') # Read image and convert into grayscale
+      grayscale_data = np.array(image, dtype=np.float32) # Store the data into a Numpy array in float32 form
+      return (grayscale_data - grayscale_data.min()) / (grayscale_data.max() - grayscale_data.min()) # Normalization
+
+    # --- Read image ---
+    object = load_and_normalize_image('pic/full_image.png')
+
+```.convert('L')``` is to convert the image to grayscale (single channel), ```'L'``` represents luminance.
+
+Then we should define sensor plane and its corresponding spatial grid. The sensor's pixel size can be assumed as $1.6 \mu m$ . To make it be aligned wth the sample image, we better to set the number of pixels the same as the dimension of the image. Otherwise, we need to do downscaling on hologram field to respect the physical limitation. So now let's just make it simple. When defining the spatial grid, It is best to put $(0, 0)$ in the center of the array, otherwise it is usually in the upper left corner of the array by default.
+
+    # --- Set pixel size of the image and sensor ---
+    sensor_pixel_sizes = 1.6e-6  # 1.6µm for sensor
+    numPixels_image = 1024  # The dimension of the image
+    
+    # --- Define the spatial grid ---
+    x = np.arange(numPixels_image) - numPixels_image / 2 - 1
+    y = np.arange(numPixels_image) - numPixels_image / 2 - 1
+    W, H = np.meshgrid(x, y)
+
+After that, It is to define the sample properties. We can assume the sample-sensor distance is $0.005m$ but normally this value is around $0.001 m$ or even smaller because when the sample is very close to the sensor, the diffraction or scattering pattern it produces will not spread excessively due to the long propagation distance, thereby retaining more detailed information, facilitating subsequent image reconstruction through numerical methods. We have the amplitude absorption which can be represented as $I = I_0 \exp (-\alpha L)$. Here ```1.6``` is $\alpha$ which is the absorption index and the sample absorption is approximately $80\%$. Phase delay is $\Delta \phi = k \Delta n L$ and ```ph0``` is the phase modulation index which equivalent to $k\Delta n$. The grayscale value can be understanded as ```L```. That is the thickness of the sample. When $L$ equals to $0$, means the thickness is $0$ and there is no absorption and phase delay.
+
+    # --- Sample to sensor distance ---
+    z2 = 0.005  
+
+    # --- Define the sample field ---
+    am = np.exp(-1.6 * object)
+    ph0 = 3
+    ph = ph0 * object_filtered
+    object_field = am * np.exp(1j * ph)
+    am_object_field = np.abs(object_field)
+    plot_image(am_object_field)
+
+The last step is to use angular spectrum method to propagate the sample field to the sensor plane and read its intensity to plot the image.
+
+    # --- Acquire the hologram ---
+    hologram_field = angular_spectrum_method(object_field, sensor_pixel_sizes[0], z2, W, H, 1024)
+    am_hologram = np.abs(hologram_field)
+    # plot_image(am_hologram)
 
 ## Iterative phase retrieval algorithm
 
