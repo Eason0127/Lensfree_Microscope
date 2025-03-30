@@ -168,6 +168,30 @@ The last step is to use angular spectrum method to propagate the sample field to
     am_hologram = np.abs(hologram_field)
     # plot_image(am_hologram)
 
+Here, I can give an simple example. This is the grayscale image.
+
+<div align="center">
+    <figure>
+        <img src="./reportM1_pic/Hologram_example3.png" width="500">
+    </figure>
+</div>
+
+Then this is the field that just pass the sample.  
+
+<div align="center">
+    <figure>
+        <img src="./reportM1_pic/Hologram_example1.png" width="500">
+    </figure>
+</div>
+
+And this is the hologram I got.
+
+<div align="center">
+    <figure>
+        <img src="./reportM1_pic/Hologram_example2.png" width="500">
+    </figure>
+</div>
+
 ## Iterative phase retrieval algorithm
 
 ## Twin image and artifact
