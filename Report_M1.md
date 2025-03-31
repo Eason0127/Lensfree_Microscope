@@ -202,8 +202,8 @@ I learned about two kinds of IPR algorithm. One is Gerchberg-Saxton algorithm an
 Error reduction method uses a very classic idea, that is 
 
 1. First input an intial guess $g_k(x)$.
-2. Do the fourier transform getting $G=|G|e^{I\phi}$ .
-3. Update the fourier modulus with the recorded modulus $G=|F|e^{I\phi}$.
+2. Do the fourier transform getting $G=\|G\|e^{I\phi}$ .
+3. Update the fourier modulus with the recorded modulus $G=\|F\|e^{I\phi}$.
 4. Do an inverse fourier transform and apply object constraints.For example like amplitude non-negativity. If at some points, it doesn't satisfy the constraint then just simply set it as $0$ . At last, $g_{k+1}$ is obtained.
 5. Repeat the process untill find a convergence.
    
@@ -215,9 +215,70 @@ $$g_{k+1}(x)=\begin{cases}g_{k}(x),&x\notin\gamma\\g_{k}(x)-\beta g_{k}{}^{\prim
 
 where $\gamma$ is the set of points that do not satisfy the object constraints. Due to this method has more reasonable constraints, it can reach a better reconstruction result. For hybrid in-and-out method, It may dynamically adjust $\beta$ or use a stronger update strategy when the constraints are continuously violated, so as to better escape the local optimum and avoid stagnation.
 
-Now comes to the algorithm I used in my codes.  
+Now comes to the algorithm I used in my codes.  Its idea is to use angular spectrum method and make propagations between the sample plane and the sensor plane to reconstruct the losing phase information. It can be described as below.
 
-Then is the steepest descent method. This is a general optimization algorithm used to minimize the objective function. Its basic idea is to calculate the gradient of the objective function at the current estimate, and then update the parameters along the negative direction of the gradient to gradually approach the local optimal solution. Its step is like 
+1. Make an initial guess $h_k(x)$ as input.
+2. Apply backward-propagation on $h_k(x)$ and propagate it to the object plane. 
+3. Apply the amplitude non-negativity constraint to get $g_k(x)$ .
+4. Apply forward-propagation on $g_k(x)$ and propagate it back to the sensor plane.
+5. Apply the intensity constraint. Then get $h_{k+1}$ .
+6. Repeat step 2 to 5 untill reach a convergence.
+  
+**Code Simulation**
+
+    def IPR(Measured_amplitude, distance, iteration_number, convergence_threshold, pixelSize, W, H, numPixels, object_field):
+      update_phase = [] # Restore the phase 
+      last_field = None # Restore the field when reaching the convergence
+      rms_errors = [] # Restore the RMS error
+      ssim_errors = [] # Restore the SSIM error
+      # --- The iteration process ---
+      for k in range(k_max):
+
+          # a) Sensor plane
+          if k == 0:
+              phase0 = np.zeros(Measured_amplitude.shape)
+              field1 = Measured_amplitude * np.exp(1j * phase0)
+          else:
+              field1 = Measured_amplitude * np.exp(1j * update_phase[k - 1])
+
+          # b) Backpropagation and apply constraint
+          field2 = angular_spectrum_method(field1, pixelSize, -distance, W, H, numPixels)
+          phase_field2 = np.angle(field2)  # phase
+          amp_field2 = np.abs(field2)  # amplitude
+          abso = -np.log(amp_field2 + 1e-8) #1e-8 to prevent 0 value
+          # Apply constraints
+          abso[abso < 0] = 0
+          phase_field2[abso < 0] = 0
+          amp_field2 = np.exp(-abso)
+          field22 = amp_field2 * np.exp(1j * phase_field2)
+
+          # c) Forward propagation
+          field3 = angular_spectrum_method(field22, pixelSize, distance, W, H, numPixels)
+          amp_field3 = np.abs(field3)
+          phase_field3 = np.angle(field3)
+          update_phase.append(phase_field3)
+          # d) Backpropagate to get the image
+          field4 = angular_spectrum_method(field3, pixelSize, -distance, W, H, numPixels)
+          amp_field4 = np.abs(field4)
+          last_field = field4
+
+          # Error calculation
+          if k > 0:
+              rms_error = np.sqrt(np.mean((amp_field_after - amp_field4) ** 2))
+              rms_errors.append(rms_error)
+              print(f"Iteration {k}: RMS Error = {rms_error}")
+              ssim_value = ssim(amp_field_after, amp_field4, data_range=amp_field_after.max() - amp_field_after.min())
+              ssim_errors.append(ssim_value)
+              print(f"Iteration {k}: SSIM = {ssim_value}")
+              # threshold
+              if rms_error < convergence_threshold:
+                  print(f"Converged at iteration {k}")
+                  return last_field, rms_errors, ssim_errors
+      return last_field, rms_errors, ssim_errors
+
+I can give an example here to show how's the reconstruction.
+
+Then the last is the steepest descent method. This is a general optimization algorithm used to minimize the objective function. Its basic idea is to calculate the gradient of the objective function at the current estimate, and then update the parameters along the negative direction of the gradient to gradually approach the local optimal solution. Its steps are like 
 
 1. Input the Initial guess $g(x)$.
 2. Do the fourier transform and update it with recorded fourier modulus $g'(x)$ and keep its phase unchanged.
