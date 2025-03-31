@@ -31,6 +31,9 @@
 - [Sampling simulation with noise](#sampling-simulation-with-noise)
   - [Phase 1](#phase-1)
 
+**Songhui Wang** 
+
+30/03/2025
 
 # Lensless Microscope introduction
 
@@ -193,6 +196,35 @@ And this is the hologram I got.
 </div>
 
 ## Iterative phase retrieval algorithm
+
+I learned about two kinds of IPR algorithm. One is Gerchberg-Saxton algorithm and one is steepest descent method. They are different two ways to recover the phase information. GS algorithm estimates the missing phase information by alternating projections between two domains (usually spatial and Fourier). By continuously modifying the amplitude and phase constraints, it can converge to a reasonable solution. Many algorithms are developed based on GS algorithm. For example, Error reduction method(1978), In-and-out method(1978), Hybrid in-and-out method(1986) and around 2013 the most often used algorithm was invented. 
+
+Error reduction method uses a very classic idea, that is 
+
+1. First input an intial guess $g_k(x)$.
+2. Do the fourier transform getting $G=|G|e^{I\phi}$ .
+3. Update the fourier modulus with the recorded modulus $G=|F|e^{I\phi}$.
+4. Do an inverse fourier transform and apply object constraints.For example like amplitude non-negativity. If at some points, it doesn't satisfy the constraint then just simply set it as $0$ . At last, $g_{k+1}$ is obtained.
+5. Repeat the process untill find a convergence.
+   
+However, normally it's not practical for 2D image because in most of this case, the error function can decrease rapidly but afterwards the convergence rate will become very slow and hense not very practical. 
+
+In-and-out method achieves some improvements by optimizing the applied constraint which is in step 4, Before, the constraint is very strong that only points that satisfy the constraints will continue keeping their values. This can create sharp discontinuities at object boundaries, which can easily cause artifacts or "edge effects". These unnatural jumps may interfere with subsequent iterations and cause the results to deviate from the true solution. Also  this may remove some faint but important structural information in real objects. In-and-out method has a certain tolerance range for prior information of objects (such as finite support, non-negativity, etc.). It's like 
+
+$$g_{k+1}(x)=\begin{cases}g_{k}(x),&x\notin\gamma\\g_{k}(x)-\beta g_{k}{}^{\prime}(x),&x\in\gamma&\end{cases}$$
+
+where $\gamma$ is the set of points that do not satisfy the object constraints. Due to this method has more reasonable constraints, it can reach a better reconstruction result. For hybrid in-and-out method, It may dynamically adjust $\beta$ or use a stronger update strategy when the constraints are continuously violated, so as to better escape the local optimum and avoid stagnation.
+
+Now comes to the algorithm I used in my codes.  
+
+Then is the steepest descent method. This is a general optimization algorithm used to minimize the objective function. Its basic idea is to calculate the gradient of the objective function at the current estimate, and then update the parameters along the negative direction of the gradient to gradually approach the local optimal solution. Its step is like 
+
+1. Input the Initial guess $g(x)$.
+2. Do the fourier transform and update it with recorded fourier modulus $g'(x)$ and keep its phase unchanged.
+3. Calculate the error function $B$ which is our obeject function.
+4. Do a partial derivative on $B$ to get  $\frac{\partial B}{\partial g(x)}$ and estimate the a proper step size $\alpha$.
+5. Update the field by $g_i(x)=g_{i-1}(x)+\alpha \times (\frac{\partial B}{\partial g(x)})$ .
+6. Repeat step 2 to step 5 until reach a convergence.
 
 ## Twin image and artifact
 
