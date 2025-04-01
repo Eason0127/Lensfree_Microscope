@@ -33,7 +33,6 @@
 
 
 
-30/03/2025
 
 # Research report
 
