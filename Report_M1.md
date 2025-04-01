@@ -19,7 +19,7 @@
   </script>
 </head>
 
-- [Lensless Microscope introduction](#lensless-microscope-introduction)
+- [Research report](#research-report)
   - [What is lensless microscope?](#what-is-lensless-microscope)
   - [Holography and hologram](#holography-and-hologram)
   - [Angular spectrum method](#angular-spectrum-method)
@@ -28,14 +28,14 @@
   - [Twin image and artifact](#twin-image-and-artifact)
   - [Shannon sampling criteria](#shannon-sampling-criteria)
   - [Noise issue](#noise-issue)
-- [Sampling simulation with noise](#sampling-simulation-with-noise)
-  - [Phase 1](#phase-1)
+  - [Sampling simulation with noise](#sampling-simulation-with-noise)
+    - [Phase 1](#phase-1)
 
 **Songhui Wang** 
 
 30/03/2025
 
-# Lensless Microscope introduction
+# Research report
 
 ## What is lensless microscope?
 
@@ -411,11 +411,11 @@ In practice, the detection will definitly include noise and this will influence 
 
 ---
 
-# Sampling simulation with noise
+## Sampling simulation with noise
 
 The goal of this simulation is to try to figure out what would happen in our set up in which case we are going to have down-sampling(due to pixel size limitation) and noise issues. Also some metrics should be found to help us tell if the set up works as we expected.
 
-## Phase 1
+### Phase 1
 
 At this stage, the noise would be simplified as a white Guassian noise. When this simulation is done, I would then go deeper in the noise simulation considering different ratio of different noises. 
 
