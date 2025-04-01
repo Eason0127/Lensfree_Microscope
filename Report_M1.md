@@ -31,11 +31,13 @@
   - [Sampling simulation with noise](#sampling-simulation-with-noise)
     - [Phase 1](#phase-1)
 
-**Songhui Wang** 
+
 
 30/03/2025
 
 # Research report
+
+**Songhui Wang**  $\qquad$ 30/03/2025
 
 ## What is lensless microscope?
 
