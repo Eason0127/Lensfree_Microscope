@@ -407,6 +407,8 @@ In practice, the detection will definitly include noise and this will influence 
             L = 2**12 - 1
             image_quantized = np.round(image * L) / L
             quant_error = image_quantized - image
+  
+   In the initial stage, we can just consider the Gaussian noise which follows a normal distribution. 
 
 
 
