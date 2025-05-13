@@ -83,7 +83,7 @@ In addition, $U$ must satisfy the Helmholtz equation $\nabla^2U+k^2U=0$ at all s
 
 $$A(x,y,z)=A(x,y,0)\exp{(j\frac{2\pi}{\lambda}\sqrt{1-\alpha^2-\beta ^2}z)}$$
 
-As a result, we must have $\alpha^2 + \beta ^2 <1$ or $f_x^2 + f_y ^2< \lambda ^2$, otherwise $z$ will only have imaginary solution and this wave can't propagate at far field and will attenuate to a level that is almost negligible within a certain distance. **So that is our support area in frequency domain.**
+As a result, we must have $\alpha^2 + \beta ^2 <1$ or $f_x^2 + f_y ^2< \frac{1}{\lambda ^2}$, otherwise $z$ will only have imaginary solution and this wave can't propagate at far field and will attenuate to a level that is almost negligible within a certain distance. **So that is our support area in frequency domain.**
 
 Then we replace $A(x,y,z)$ with the Helmholtz equation's solution, we have
 
