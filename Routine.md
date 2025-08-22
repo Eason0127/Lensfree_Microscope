@@ -113,8 +113,7 @@ $$\arctan (\frac{0.61 \times 532 \times 10^{-9} \times z_1 / D}{1 \times 10^{-3}
 5. <span style="color:purple;">Reconstruction</span>
    - Input the sampled hologram to the IPR function-using the sensor pixel
 
-**Experiment 1**
-
+$F=u_0(x,y)\cdot t(x,y)=t(x,y)=\exp [-\alpha (x,y)]\cdot \exp [i\Phi (x,y)]$
 
 
 
